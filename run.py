@@ -16,16 +16,19 @@ SHEET = GSPREAD_CLIENT.open('strength_calculator')
 
 def validate_menu_input(data):
     """
-    Checks if the user input is a number between 1 and 2.
+    Try statement convert user input to integer. Raise ValueError
+    if input aren't either 1 or 2. Or if string cannot be converted 
+    into an integer.
     """
+
     try:
-        if int(data) != 1 and int(data) != 2:
+        data = int(data)
+        if not data in [1, 2]:
             raise ValueError(
                 f'A number between 1 or 2 is required. You entered {data}'
             )
     except ValueError as e:
         print(f'Invalid input: {e}, please try again. \n')
-
 
 def menu():
     print('Hello! Welcome to the strength calculator!\n')
