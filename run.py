@@ -12,9 +12,11 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('strength_calculator')
+answers = SHEET.worksheet('answers')
 
 
 def menu():
+    get_all_users()
     print('Hello! Welcome to the strength calculator!\n')
     print('Please chose an option: ')
     print('Type 1 / 2\n')
@@ -35,7 +37,6 @@ def menu():
         user_age = input()
         
 
-
 def validate_menu_input(data):
     """
     Try statement convert user input to integer. Raise ValueError
@@ -52,5 +53,19 @@ def validate_menu_input(data):
     except ValueError as e:
         print(f'Invalid input: {e}, please try again. \n')
     
+
+def get_all_users():
+    """
+    Gets worksheet data as a list of dicts and stores
+    in all_users variable
+    """
+    all_users = answers.get_all_records()
+    print(all_users)
+    
+
+
+
+    return all_users
+
 
 menu()
