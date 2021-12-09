@@ -16,7 +16,6 @@ answers = SHEET.worksheet('answers')
 
 
 def menu():
-    get_all_users()
     print('Hello! Welcome to the strength calculator!\n')
     print('Please chose an option: ')
     print('Type 1 / 2\n')
@@ -26,17 +25,9 @@ def menu():
     validate_menu_input(menu_input)
     
     if menu_input == "1":
-        print('Enter a number between 1-5 to confirm your age')
-        print('''
-        1. 17 or younger
-        2. 18-25
-        3. 26-35
-        4. 36-50
-        5. 51+
-        ''')
-        user_age = input()
+        add_new_user()
         
-
+        
 def validate_menu_input(data):
     """
     Try statement convert user input to integer. Raise ValueError
@@ -61,11 +52,27 @@ def get_all_users():
     """
     all_users = answers.get_all_records()
     print(all_users)
-    
 
 
+def add_new_user():
 
-    return all_users
+    print('Chose one of the following age groups:')
+    print('''
+    1. 17 or younger
+    2. 18-25
+    3. 26-35
+    4. 36-50
+    5. 51+
+    ''')
+    age_option = int(input()) - 1
+    age_groups = ('<18', '18-25', '26-35', '36-50', '51+')
+    user_age = age_groups[age_option]
+    print(user_age)
 
 
-menu()
+def main():
+    get_all_users()
+    menu()
+
+
+main()
