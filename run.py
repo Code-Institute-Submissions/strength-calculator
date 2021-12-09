@@ -1,5 +1,6 @@
 import gspread
 from google.oauth2.service_account import Credentials
+from pprint import pprint
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -14,6 +15,20 @@ SHEET = GSPREAD_CLIENT.open('strength_calculator')
 
 answers = SHEET.worksheet('answers')
 
-data = answers.get_all_values()
 
-print(data)
+
+def main():
+    print('Hello! Welcome to the strength calculator!\n')
+    print('Please chose an option: ')
+    print('Type 1 / 2\n')
+    print('1. Check your average')
+    print('2. View age average')
+    menu_input = input()
+    
+
+    print(menu_input)
+
+
+main()
+
+
