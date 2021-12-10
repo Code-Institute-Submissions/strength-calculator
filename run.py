@@ -62,7 +62,12 @@ def get_all_users():
     all_users = users.get_all_records()
     user_ids = users.col_values(7)
     user_ids.pop(0)
+    for i in range(0, len(user_ids)):
+        user_ids[i] = int(user_ids[i])
+
+
     
+        
 
             
         
