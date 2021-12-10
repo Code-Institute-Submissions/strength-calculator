@@ -13,7 +13,7 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('strength_calculator')
-answers = SHEET.worksheet('users')
+users = SHEET.worksheet('users')
 
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
@@ -54,16 +54,22 @@ def validate_email(email):
         return email
         
 
-    
-
-
 def get_all_users():
     """
     Gets worksheet data as a list of dicts and stores
     in all_users variable
     """
-    all_users = answers.get_all_records()
-    print(all_users)
+    all_users = users.get_all_records()
+    user_ids = []
+    for user in all_users:
+        user_id = user['Id']
+        user_ids.append(user_id)
+        print(user_ids)
+
+            
+        
+
+    # print(all_users)
 
 
 def add_new_user():
