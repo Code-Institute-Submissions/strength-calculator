@@ -1,6 +1,7 @@
 import gspread
 from google.oauth2.service_account import Credentials
 from pprint import pprint
+import re
 
 SCOPE = [
     "https://www.googleapis.com/auth/spreadsheets",
@@ -13,6 +14,8 @@ SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('strength_calculator')
 answers = SHEET.worksheet('users')
+
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
 
 
 def menu():
@@ -44,6 +47,13 @@ def validate_menu_input(data):
     except ValueError as e:
         print(f'Invalid input: {e}, please try again. \n')
     
+
+def validate_email(email):
+    if(re.fullmatch(regex, email)):
+        return False
+    else:
+        return True
+
 
 def get_all_users():
     """
@@ -78,8 +88,13 @@ def add_new_user():
             break
     new_user['Age'] = age
     
-    print(new_user)
-   # email = input('Enter your Email Adress: ')
+
+
+    """while True:
+        email = input('Email Adress: ')
+        if """
+   
+   print(new_user)
 
 
 def main():
