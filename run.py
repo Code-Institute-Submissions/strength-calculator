@@ -50,9 +50,11 @@ def validate_menu_input(data):
 
 def validate_email(email):
     if(re.fullmatch(regex, email)):
-        return False
-    else:
-        return True
+        email = True
+        return email
+        
+
+    
 
 
 def get_all_users():
@@ -87,14 +89,16 @@ def add_new_user():
         else:
             break
     new_user['Age'] = age
-    
 
-
-    """while True:
+    while True:
         email = input('Email Adress: ')
-        if """
-   
-   print(new_user)
+        if not validate_email(email):
+            print('Please enter a valid email adress')
+        else:
+            break
+    new_user['Email'] = email
+        
+    print(new_user)
 
 
 def main():
