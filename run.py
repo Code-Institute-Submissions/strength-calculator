@@ -12,7 +12,7 @@ CREDS = Credentials.from_service_account_file('creds.json')
 SCOPED_CREDS = CREDS.with_scopes(SCOPE)
 GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
 SHEET = GSPREAD_CLIENT.open('strength_calculator')
-answers = SHEET.worksheet('answers')
+answers = SHEET.worksheet('users')
 
 
 def menu():
@@ -55,19 +55,23 @@ def get_all_users():
 
 
 def add_new_user():
+    """
+    Creates a new user and gives it an ID. 
+    """
+    new_user = {}
 
-    print('Chose one of the following age groups:')
-    print('''
-    1. 17 or younger
-    2. 18-25
-    3. 26-35
-    4. 36-50
-    5. 51+
-    ''')
-    age_option = int(input()) - 1
-    age_groups = ('<18', '18-25', '26-35', '36-50', '51+')
-    user_age = age_groups[age_option]
-    print(user_age)
+    while True:
+        name = input('First Name: ').capitalize()
+        if not name.isalpha():
+            print('Please only use letters between a-z')
+        else:
+            break    
+    age = input('Please enter your age: ')
+    email = input('Enter your Email Adress: ')
+    new_user['First Name'] = name
+    print(new_user)
+    
+
 
 
 def main():
