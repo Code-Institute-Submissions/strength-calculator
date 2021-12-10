@@ -61,17 +61,25 @@ def add_new_user():
     new_user = {}
 
     while True:
-        name = input('First Name: ').capitalize()
+        name = input('Name: ').capitalize()
         if not name.isalpha():
             print('Please only use letters between a-z')
         else:
-            break    
-    age = input('Please enter your age: ')
-    email = input('Enter your Email Adress: ')
-    new_user['First Name'] = name
-    print(new_user)
-    
+            break
+    new_user['Name'] = name
 
+    while True:
+        age = input('Age: ')
+        if not age.isnumeric():
+            print('Please only use numbers')
+        elif len(age) > 2:
+            print('Please enter a valid age')
+        else:
+            break
+    new_user['Age'] = age
+    
+    print(new_user)
+   # email = input('Enter your Email Adress: ')
 
 
 def main():
