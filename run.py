@@ -65,20 +65,14 @@ def get_all_users():
     for i in range(0, len(user_ids)):
         user_ids[i] = int(user_ids[i])
 
-
-    
-        
-
-            
-        
-
-    # print(all_users)
+    return all_users, user_ids
 
 
 def add_new_user():
     """
     Creates a new user and gives it an ID. 
     """
+    all_users, user_ids = get_all_users()
     new_user = {}
 
     while True:
@@ -106,8 +100,9 @@ def add_new_user():
         else:
             break
     new_user['Email'] = email
-        
-    print(new_user)
+    new_user['Id'] = max(user_ids) + 1   
+    all_users.append(new_user)
+    print(all_users)
 
 
 def main():
