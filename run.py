@@ -60,11 +60,9 @@ def get_all_users():
     in all_users variable
     """
     all_users = users.get_all_records()
-    user_ids = []
-    for user in all_users:
-        user_id = user['Id']
-        user_ids.append(user_id)
-        print(user_ids)
+    user_ids = users.col_values(7)
+    user_ids.pop(0)
+    
 
             
         
