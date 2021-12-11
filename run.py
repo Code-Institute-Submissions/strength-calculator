@@ -26,7 +26,7 @@ def menu():
     print('2. View age average')
     menu_input = input()
     validate_menu_input(menu_input)
-    
+
     if menu_input == "1":
         add_new_user()
         
@@ -60,7 +60,7 @@ def get_all_users():
     in all_users variable
     """
     all_users = users.get_all_records()
-    user_ids = users.col_values(7)
+    user_ids = users.col_values(4)
     user_ids.pop(0)
     for i in range(0, len(user_ids)):
         user_ids[i] = int(user_ids[i])
@@ -70,7 +70,8 @@ def get_all_users():
 
 def add_new_user():
     """
-    Creates a new user and gives it an ID. 
+    Creates a new user dict, stores validated user inputs in dict. 
+    User dict is passed an ID and appended to 
     """
     all_users, user_ids = get_all_users()
     new_user = {}
@@ -100,8 +101,15 @@ def add_new_user():
         else:
             break
     new_user['Email'] = email
-    new_user['Id'] = max(user_ids) + 1   
+    new_user['Id'] = max(user_ids) + 1
     all_users.append(new_user)
+    new_user_list = list(new_user.values())
+    empty_row = len(users.get_all_values()) + 1
+    for i in range(0, len(new_user_list)):
+        users.update(empty_row, new_user_list[i])
+        
+    # users.update(empty_row, new_user_list)
+    print(new_user_list)
     print(all_users)
 
 
