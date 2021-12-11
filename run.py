@@ -103,13 +103,13 @@ def add_new_user():
     new_user['Email'] = email
     new_user['Id'] = max(user_ids) + 1
     all_users.append(new_user)
-    new_user_list = list(new_user.values())
-    empty_row = len(users.get_all_values()) + 1
-    for i in range(0, len(new_user_list)):
-        users.update(empty_row, new_user_list[i])
-        
+# new_user_list = list(new_user.values())
+# empty_row = len(users.get_all_values()) + 1
+# for i in range(0, len(new_user_list)):
+#    users.update(empty_row, new_user_list[i])
+
     # users.update(empty_row, new_user_list)
-    print(new_user_list)
+    # print(new_user_list)
     print(all_users)
 
 
